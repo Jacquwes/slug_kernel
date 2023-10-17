@@ -9,3 +9,4 @@ endif()
 
 # include our project
 add_subdirectory(slug_kernel)
+add_subdirectory(libc)

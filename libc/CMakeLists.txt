@@ -1,15 +1,19 @@
-project(kernel)
+project(libc C)
+
+enable_language(C)
 
 # basic cmake setup
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 file(GLOB_RECURSE SOURCE_FILES "src/*.cpp")
+file(GLOB_RECURSE HEADER_FILES "include/*.h")
 
-add_executable(kernel ${SOURCE_FILES})
+add_library(libc ${SOURCE_FILES} ${HEADER_FILES})
+
+set_target_properties(libc PROPERTIES LINKER_LANGUAGE C)
+
+include_directories(include)
 
 target_compile_options(
-	kernel
+	libc
 	PRIVATE "-Wall"
 	PRIVATE "-Wextra"
 	PRIVATE "-ffreestanding"
@@ -27,16 +31,10 @@ target_compile_options(
 )
 
 target_link_options(
-	kernel
+	libc
 	PUBLIC "-ffreestanding"
 	PUBLIC "-nostdlib"
 	PUBLIC "-mcmodel=kernel"
 	PUBLIC "-static"
 	PUBLIC "-pie"
-	PUBLIC "-T${CMAKE_SOURCE_DIR}/slug_kernel/linker.ld"
 )
-
-# include the boot image cmake file
-include(boot_image.cmake)
-
-target_link_libraries(kernel PUBLIC libc)
