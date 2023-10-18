@@ -8,6 +8,12 @@ file(GLOB_RECURSE SOURCE_FILES "src/*.cpp")
 
 add_executable(kernel ${SOURCE_FILES})
 
+target_include_directories(
+	kernel
+	PUBLIC
+	"include"
+)
+
 target_compile_options(
 	kernel
 	PRIVATE "-Wall"
