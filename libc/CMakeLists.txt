@@ -10,7 +10,11 @@ add_library(libc ${SOURCE_FILES} ${HEADER_FILES})
 
 set_target_properties(libc PROPERTIES LINKER_LANGUAGE C)
 
-include_directories(include)
+target_include_directories(
+	libc
+	PUBLIC
+	"include"
+)
 
 target_compile_options(
 	libc
