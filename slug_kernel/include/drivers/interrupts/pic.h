@@ -53,6 +53,6 @@ namespace slug_kernel::drivers::interrupts::pic
 
 	void init();
 
-	void outb(pic_ports_t const& port, uint8_t const& data);
-	uint8_t inb(pic_ports_t const& port);
+	void outb(uint16_t const& port, uint8_t const& data);
+	uint8_t inb(uint16_t const& port);
 }
