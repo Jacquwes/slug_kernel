@@ -51,19 +51,6 @@ namespace slug_kernel::drivers::interrupts::pic
 		special_fully_nested = 0x10,
 	};
 
-	// COM ports for serial communication
-	enum class com_ports_t : uint16_t
-	{
-		com_1 = 0x3F8,
-		com_2 = 0x2F8,
-		com_3 = 0x3E8,
-		com_4 = 0x2E8,
-		com_5 = 0x5F8,
-		com_6 = 0x4F8,
-		com_7 = 0x5E8,
-		com_8 = 0x4E8,
-	};
-
 	void init();
 
 	void outb(pic_ports_t const& port, uint8_t const& data);
