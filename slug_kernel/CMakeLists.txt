@@ -21,6 +21,7 @@ target_compile_options(
 	PRIVATE "-ffreestanding"
 	PRIVATE "-fno-stack-protector"
 	PRIVATE "-fno-stack-check"
+	PRIVATE "-g"
 	PRIVATE "-fno-lto"
 	PRIVATE "-fPIE"
 	PRIVATE "-m64"
