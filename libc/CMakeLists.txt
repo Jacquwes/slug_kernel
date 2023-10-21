@@ -24,6 +24,7 @@ target_compile_options(
 	PRIVATE "-fno-stack-protector"
 	PRIVATE "-fno-stack-check"
 	PRIVATE "-fno-lto"
+	PRIVATE	"-g"
 	PRIVATE "-fPIE"
 	PRIVATE "-m64"
 	PRIVATE "-march=x86-64"
@@ -42,3 +43,5 @@ target_link_options(
 	PUBLIC "-static"
 	PUBLIC "-pie"
 )
+
+target_link_libraries(libc PUBLIC kernel_lib)
