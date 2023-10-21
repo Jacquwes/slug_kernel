@@ -16,7 +16,10 @@ namespace slug_kernel::drivers::memory
 			return false;
 
 		if (!previous || !previous->free)
-			return true;
+			return false;
+
+		if (previous->get_end_address() != get_address())
+			return false;
 
 		previous->size += size + sizeof(physical_memory_block);
 		previous->next = next;
@@ -33,7 +36,10 @@ namespace slug_kernel::drivers::memory
 			return false;
 
 		if (!next || !next->free)
-			return true;
+			return false;
+
+		if (get_end_address() != next->get_address())
+			return false;
 
 		size += next->size + sizeof(physical_memory_block);
 		next = next->next;

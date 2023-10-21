@@ -19,10 +19,10 @@ namespace slug_kernel::drivers::memory
 
 		physical_memory_block() = default;
 
-		// This function returns false if the block is not free.
+		// This function returns false if memory is unchanged.
 		bool merge_previous();
 
-		// This function returns false if the block is not free.
+		// This function returns false if memory is unchanged.
 		bool merge_next();
 
 		// This function returns false if the block is not free or if size is too big.
