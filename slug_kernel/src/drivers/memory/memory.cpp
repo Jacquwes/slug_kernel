@@ -73,6 +73,11 @@ namespace slug_kernel::drivers::memory
 		return reinterpret_cast<void*>(reinterpret_cast<uint64_t>(this) + sizeof(physical_memory_block));
 	}
 
+	constexpr void* physical_memory_block::get_end_address() const
+	{
+		return reinterpret_cast<void*>(reinterpret_cast<uint64_t>(this) + sizeof(physical_memory_block) + size);
+	}
+
 	constexpr uint64_t physical_memory_block::get_allocated_size() const
 	{
 		return size - sizeof(physical_memory_block);

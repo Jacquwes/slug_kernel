@@ -29,6 +29,7 @@ namespace slug_kernel::drivers::memory
 		bool split(uint64_t const& size);
 
 		constexpr void* get_address() const;
+		constexpr void* get_end_address() const;
 		constexpr uint64_t get_allocated_size() const;
 	};
 }
