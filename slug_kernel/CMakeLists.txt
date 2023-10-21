@@ -12,6 +12,7 @@ target_include_directories(
 	kernel
 	PUBLIC
 	"include"
+	"../limine"
 )
 
 target_compile_options(
