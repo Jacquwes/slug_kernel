@@ -31,5 +31,7 @@ namespace slug_kernel::drivers::memory
 		constexpr void* get_address() const;
 		constexpr void* get_end_address() const;
 		constexpr uint64_t get_allocated_size() const;
+
+		static physical_memory_block* from_pointer(void* address);
 	};
 }

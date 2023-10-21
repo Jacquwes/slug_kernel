@@ -1,5 +1,3 @@
-#pragma once
-
 /*
 * This file implements types to represent memory in a convenient way.
 */
@@ -89,4 +87,8 @@ namespace slug_kernel::drivers::memory
 		return size - sizeof(physical_memory_block);
 	}
 
+	physical_memory_block* physical_memory_block::from_pointer(void* address)
+	{
+		return reinterpret_cast<physical_memory_block*>(reinterpret_cast<uint64_t>(address) - sizeof(physical_memory_block));
+	}
 }
