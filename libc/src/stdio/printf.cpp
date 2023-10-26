@@ -86,6 +86,38 @@ int vprintf(char const* format, __builtin_va_list args)
 
 			break;
 		}
+		case 'p':
+		case 'x':
+		{
+			int value = __builtin_va_arg(args, int);
+
+			if (value < 0)
+			{
+				put_char('-');
+				value = -value;
+				written++;
+			}
+
+			put_string("0x");
+			written += 2;
+
+			if (!value)
+			{
+				put_char('0');
+				written++;
+				break;
+			}
+
+			size_t size = 36;
+
+			char string[size];
+			itoa(string, size, value, 16);
+
+			put_string(string);
+			written += strlen(string);
+
+			break;
+		}
 		case 's':
 		{
 			char* str = reinterpret_cast<char*>(__builtin_va_arg(args, int));
