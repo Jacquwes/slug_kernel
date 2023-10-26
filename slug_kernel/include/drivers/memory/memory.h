@@ -28,7 +28,7 @@ namespace slug_kernel::drivers::memory
 		// This function returns false if the block is not free or if size is too big.
 		bool split(uint64_t const& size);
 
-		constexpr void* get_address() const;
+		void* get_address() const;
 		constexpr void* get_end_address() const;
 		constexpr uint64_t get_allocated_size() const;
 
