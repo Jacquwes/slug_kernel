@@ -16,7 +16,7 @@ namespace slug_kernel::drivers::memory
 		if (!previous || !previous->free)
 			return false;
 
-		if (previous->get_end_address() != get_address())
+		if (previous->get_end_address() != reinterpret_cast<void*>(this))
 			return false;
 
 		previous->size += size + sizeof(physical_memory_block);
@@ -36,7 +36,7 @@ namespace slug_kernel::drivers::memory
 		if (!next || !next->free)
 			return false;
 
-		if (get_end_address() != next->get_address())
+		if (get_end_address() != reinterpret_cast<void*>(next))
 			return false;
 
 		size += next->size + sizeof(physical_memory_block);
