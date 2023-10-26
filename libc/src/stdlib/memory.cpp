@@ -35,4 +35,10 @@ void free(void* ptr)
 	block->free = true;
 	block->merge_previous();
 	block->merge_next();
+
+	if (block->previous)
+		block->previous->merge_next();
+
+	if (block->next)
+		block->next->merge_previous();
 }
