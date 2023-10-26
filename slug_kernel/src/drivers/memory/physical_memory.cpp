@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdint.h>
+#include <stdio.h>
 
 #include <limine.h>
 
@@ -74,5 +75,25 @@ namespace slug_kernel::drivers::memory
 		}
 
 		return nullptr;
+	}
+
+	void physical_memory_manager::display_memory_map()
+	{
+		printf("--------------------\n"
+			"Memory map:\n");
+
+		auto current_block = first_block;
+
+		while (current_block)
+		{
+			printf(
+				"Block at %p, size %x, free: %d next: %p, previous: %p\n",
+				current_block, current_block->size + sizeof(physical_memory_block), current_block->free,
+				current_block->next, current_block->previous);
+
+			current_block = current_block->next;
+		}
+
+		printf("End of memory map\n\n");
 	}
 }

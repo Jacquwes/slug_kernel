@@ -18,6 +18,8 @@ namespace slug_kernel::drivers::memory
 
 		static physical_memory_block* find_free_block(size_t size);
 
+		static void display_memory_map();
+
 	private:
 		static physical_memory_block* first_block;
 	};
