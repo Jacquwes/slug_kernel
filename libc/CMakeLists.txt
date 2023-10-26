@@ -2,11 +2,17 @@ project(libc C)
 
 enable_language(C)
 
-# basic cmake setup
-file(GLOB_RECURSE SOURCE_FILES "src/*.cpp")
-file(GLOB_RECURSE HEADER_FILES "include/*.h")
-
-add_library(libc ${SOURCE_FILES} ${HEADER_FILES})
+add_library(
+	libc
+	"include/stddef.h"
+	"include/stdint.h"
+	"include/stdio.h"
+	"include/stdlib.h"
+	"include/string.h"
+	"src/stdio/printf.cpp"
+	"src/stdlib/memory.cpp"
+	"src/string/examination.cpp"
+	"src/string/array_manipulation.cpp")
 
 set_target_properties(libc PROPERTIES LINKER_LANGUAGE C)
 
