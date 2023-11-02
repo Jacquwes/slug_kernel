@@ -7,10 +7,12 @@ set(ENABLE_EXPORTS ON)
 
 add_library(
 	kernel_lib
+	"include/arch/x86_64/gdt.h"
 	"include/drivers/interrupts/pic.h"
 	"include/drivers/memory/memory.h"
 	"include/drivers/memory/physical_memory.h"
 	"include/drivers/serial/serial.h"
+	"src/arch/x86_64/gdt.cpp"
 	"src/drivers/interrupts/pic.cpp"
 	"src/drivers/memory/memory.cpp"
 	"src/drivers/memory/physical_memory.cpp"
