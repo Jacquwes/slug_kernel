@@ -3,6 +3,7 @@
 */
 
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "arch/x86_64/gdt.h"
@@ -10,8 +11,8 @@
 
 namespace slug_kernel::arch::x86_64::gdt
 {
-	gdt_pointer gdt_manager::ptr = gdt_pointer(entries, 5);
-	gdt_entry gdt_manager::entries[5];
+	gdt_pointer gdt_manager::ptr = gdt_pointer(entries, 4);
+	gdt_entry gdt_manager::entries[4];
 
 	void gdt_manager::init()
 	{
@@ -69,9 +70,27 @@ namespace slug_kernel::arch::x86_64::gdt
 
 	void gdt_manager::flush()
 	{
-		for (size_t i = 0; i < 5; i++)
+		for (size_t i = 0; i < 3; i++)
 		{
 			entries[i] = gdt_entry(0, 0, 0, 0);
 		}
+	}
+
+	void gdt_manager::display_entries()
+	{
+		printf("--------------------\n"
+			"Grand Descriptor Table:\n");
+
+		for (size_t i = 0; i < 4; i++)
+		{
+			uint32_t base = entries[i].base_high << 24 | entries[i].base_middle << 16 | entries[i].base_low;
+			uint32_t limit = (entries[i].flags_limit_high & 0x0F) << 16 | entries[i].limit_low;
+			uint8_t access = entries[i].access_byte;
+			uint8_t flags = entries[i].flags_limit_high >> 4;
+
+			printf("Base: %x, limit: %x, access byte: %x, flags: %x\n", base, limit, access, flags);
+		}
+
+		printf("--------------------\n");
 	}
 }

@@ -14,12 +14,11 @@ namespace slug_kernel::arch::x86_64::gdt
 	{
 		static void init();
 		static void load();
-
-		static void set_entry(uint8_t index, uint64_t base, uint64_t limit, uint8_t access, uint8_t flags);
-
 		static void flush();
 
-		static gdt_entry entries[5];
+		static void display_entries();
+
+		static gdt_entry entries[4];
 
 		static gdt_pointer ptr;
 	};
