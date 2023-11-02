@@ -94,6 +94,6 @@ namespace slug_kernel::drivers::memory
 			current_block = current_block->next;
 		}
 
-		printf("End of memory map\n\n");
+		printf("--------------------\n");
 	}
 }
